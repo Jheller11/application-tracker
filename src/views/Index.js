@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
 import Alert from 'react-bootstrap/Alert'
 import DeleteButton from '../components/DeleteButton'
+import AppliedButton from '../components/AppliedButton'
 
 const Index = props => {
   return (
@@ -38,6 +39,11 @@ const Index = props => {
               </a>
               <span>Created: {date.toDateString()}</span>
               <ButtonGroup size="sm">
+                <AppliedButton
+                  id={i}
+                  handleClick={props.changeAppliedStatus}
+                  applied={item.applied}
+                />
                 <DeleteButton id={i} handleClick={props.deleteItem} />
               </ButtonGroup>
             </ListGroup.Item>

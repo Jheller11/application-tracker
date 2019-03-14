@@ -19,6 +19,7 @@ class App extends Component {
     this.deleteItem = this.deleteItem.bind(this)
     this.saveChanges = this.saveChanges.bind(this)
     this.loadItems = this.loadItems.bind(this)
+    this.changeAppliedStatus = this.changeAppliedStatus.bind(this)
   }
 
   addItem(data) {
@@ -33,6 +34,7 @@ class App extends Component {
     })
   }
 
+  // delete a single item by index (add an actual id?)
   deleteItem(e) {
     let key = parseInt(e.target.id)
     let items = this.state.items.filter((item, i) => i !== key)
@@ -41,11 +43,13 @@ class App extends Component {
     })
   }
 
+  // put state into local storage - replace if exists
   saveChanges(e) {
     e.preventDefault()
     localStorage.setItem('jobs', JSON.stringify(this.state.items))
   }
 
+  // pull data from local storage and insert into state
   loadItems(e) {
     e.preventDefault()
     let string = localStorage.getItem('jobs')
@@ -55,6 +59,14 @@ class App extends Component {
   }
 
   // add method for change applied status
+  changeAppliedStatus(e) {
+    let key = parseInt(e.target.id)
+    let items = this.state.items
+    items[key].applied = !items[key].applied
+    this.setState({
+      items: items
+    })
+  }
 
   // add method for change interview status
 
@@ -67,10 +79,10 @@ class App extends Component {
           <Navbar.Brand href="/">Tracker</Navbar.Brand>
           <Nav>
             <IndexLinkContainer to="/">
-              <Nav.Link>Index</Nav.Link>
+              <Nav.Link>All</Nav.Link>
             </IndexLinkContainer>
             <IndexLinkContainer to="/new">
-              <Nav.Link>New</Nav.Link>
+              <Nav.Link>New +</Nav.Link>
             </IndexLinkContainer>
           </Nav>
         </Navbar>
@@ -88,6 +100,7 @@ class App extends Component {
                   saveChanges={this.saveChanges}
                   loadItems={this.loadItems}
                   deleteItem={this.deleteItem}
+                  changeAppliedStatus={this.changeAppliedStatus}
                   {...props}
                 />
               )}

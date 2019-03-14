@@ -3,8 +3,8 @@ import Button from 'react-bootstrap/Button'
 
 const DeleteButton = props => {
   return (
-    <Button id={props.id} onClick={props.handleClick}>
-      Delete
+    <Button variant="danger" id={props.id} onClick={props.handleClick}>
+      Del
     </Button>
   )
 }
