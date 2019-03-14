@@ -5,6 +5,8 @@ import Index from './views/Index'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { IndexLinkContainer } from 'react-router-bootstrap'
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import './App.css'
 
 class App extends Component {
@@ -16,6 +18,8 @@ class App extends Component {
 
     this.addItem = this.addItem.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
+    this.saveChanges = this.saveChanges.bind(this)
+    this.loadItems = this.loadItems.bind(this)
   }
 
   addItem(data) {
@@ -35,6 +39,19 @@ class App extends Component {
     })
   }
 
+  saveChanges(e) {
+    e.preventDefault()
+    localStorage.setItem('jobs', JSON.stringify(this.state.items))
+  }
+
+  loadItems(e) {
+    e.preventDefault()
+    let string = localStorage.getItem('jobs')
+    this.setState({
+      items: JSON.parse(string)
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -49,6 +66,16 @@ class App extends Component {
             </IndexLinkContainer>
           </Nav>
         </Navbar>
+        <Nav className="justify-content-end">
+          <ButtonGroup size="sm">
+            <Button variant="success" onClick={this.saveChanges}>
+              Save Changes
+            </Button>
+            <Button variant="dark" onClick={this.loadItems}>
+              Load Jobs
+            </Button>
+          </ButtonGroup>
+        </Nav>
         <main>
           <Switch>
             <Route

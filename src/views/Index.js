@@ -4,7 +4,9 @@ const Index = props => {
   return (
     <ul>
       {props.items.map((item, i) => (
-        <li key={i}>{item.title}</li>
+        <li key={i}>
+          {item.title}: {item.company}
+        </li>
       ))}
     </ul>
   )
