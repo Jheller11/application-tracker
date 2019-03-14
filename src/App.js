@@ -7,13 +7,15 @@ import Nav from 'react-bootstrap/Nav'
 import { IndexLinkContainer } from 'react-router-bootstrap'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Alert from 'react-bootstrap/Alert'
 import './App.css'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      items: []
+      items: [],
+      unsavedChanges: false
     }
 
     this.addItem = this.addItem.bind(this)
@@ -25,7 +27,9 @@ class App extends Component {
   addItem(data) {
     let items = this.state.items
     data.created = Date.now()
-    data.active = true
+    data.applied = false
+    data.interview = false
+    data.rejected = false
     items.push(data)
     this.setState({
       items: items
@@ -52,6 +56,12 @@ class App extends Component {
     })
   }
 
+  // add method for change applied status
+
+  // add method for change interview status
+
+  // add method for change rejected status
+
   render() {
     return (
       <div className="App">
@@ -66,7 +76,7 @@ class App extends Component {
             </IndexLinkContainer>
           </Nav>
         </Navbar>
-        <Nav className="justify-content-end">
+        <Nav className="justify-content-center">
           <ButtonGroup size="sm">
             <Button variant="success" onClick={this.saveChanges}>
               Save Changes
@@ -77,6 +87,15 @@ class App extends Component {
           </ButtonGroup>
         </Nav>
         <main>
+          <Alert dismissible className="mt-3 small" variant="warning">
+            Remember to click 'Save Changes' before exiting.
+          </Alert>
+          {this.state.items.length === 0 ? (
+            <Alert className="mt-3 small" variant="info">
+              If you have used the application before click 'Load Jobs' to load
+              previously saved items.
+            </Alert>
+          ) : null}
           <Switch>
             <Route
               path="/new"
