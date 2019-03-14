@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
 import New from './views/New'
+import Index from './views/Index'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 import './App.css'
 
 class App extends Component {
@@ -12,17 +15,19 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="App">
-        <h1>Application Tracker</h1>
-        <nav>
-          <Link to="/">Index</Link>
-          <Link to="/new">New</Link>
-        </nav>
+        <Navbar>
+          <Navbar.Brand href="/">Tracker</Navbar.Brand>
+          <Nav>
+            <Link to="/">Index</Link>
+            <Link to="/new">New</Link>
+          </Nav>
+        </Navbar>
         <main>
           <Switch>
             <Route path="/new" render={props => <New {...props} />} />
+            <Route path="/" render={props => <Index {...props} />} />
           </Switch>
         </main>
       </div>
