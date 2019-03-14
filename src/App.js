@@ -5,9 +5,6 @@ import Index from './views/Index'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { IndexLinkContainer } from 'react-router-bootstrap'
-import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import Alert from 'react-bootstrap/Alert'
 import './App.css'
 
 class App extends Component {
@@ -76,26 +73,7 @@ class App extends Component {
             </IndexLinkContainer>
           </Nav>
         </Navbar>
-        <Nav className="justify-content-center">
-          <ButtonGroup size="sm">
-            <Button variant="success" onClick={this.saveChanges}>
-              Save Changes
-            </Button>
-            <Button variant="dark" onClick={this.loadItems}>
-              Load Jobs
-            </Button>
-          </ButtonGroup>
-        </Nav>
         <main>
-          <Alert dismissible className="mt-3 small" variant="warning">
-            Remember to click 'Save Changes' before exiting.
-          </Alert>
-          {this.state.items.length === 0 ? (
-            <Alert className="mt-3 small" variant="info">
-              If you have used the application before click 'Load Jobs' to load
-              previously saved items.
-            </Alert>
-          ) : null}
           <Switch>
             <Route
               path="/new"
@@ -103,7 +81,14 @@ class App extends Component {
             />
             <Route
               path="/"
-              render={props => <Index items={this.state.items} {...props} />}
+              render={props => (
+                <Index
+                  items={this.state.items}
+                  saveChanges={this.saveChanges}
+                  loadItems={this.loadItems}
+                  {...props}
+                />
+              )}
             />
           </Switch>
         </main>
