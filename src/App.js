@@ -33,7 +33,8 @@ class App extends Component {
     })
   }
 
-  deleteItem(key) {
+  deleteItem(e) {
+    let key = parseInt(e.target.id)
     let items = this.state.items.filter((item, i) => i !== key)
     this.setState({
       items: items
@@ -86,6 +87,7 @@ class App extends Component {
                   items={this.state.items}
                   saveChanges={this.saveChanges}
                   loadItems={this.loadItems}
+                  deleteItem={this.deleteItem}
                   {...props}
                 />
               )}

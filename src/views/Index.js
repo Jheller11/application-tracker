@@ -4,6 +4,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Button from 'react-bootstrap/Button'
 import Nav from 'react-bootstrap/Nav'
 import Alert from 'react-bootstrap/Alert'
+import DeleteButton from '../components/DeleteButton'
 
 const Index = props => {
   return (
@@ -36,7 +37,9 @@ const Index = props => {
                 {item.title}: {item.company}
               </a>
               <span>Created: {date.toDateString()}</span>
-              <ButtonGroup size="sm" />
+              <ButtonGroup size="sm">
+                <DeleteButton id={i} handleClick={props.deleteItem} />
+              </ButtonGroup>
             </ListGroup.Item>
           )
         })}
