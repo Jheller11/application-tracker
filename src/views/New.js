@@ -59,6 +59,17 @@ class New extends Component {
             placeholder="Enter company"
           />
         </Form.Group>
+        <Form.Group>
+          <Form.Label>Notes:</Form.Label>
+          <Form.Control
+            onChange={this.handleChange}
+            name="notes"
+            type="text"
+            as="textarea"
+            rows="3"
+            placeholder="free text"
+          />
+        </Form.Group>
         <Button variant="outline-primary" type="submit">
           Create
         </Button>

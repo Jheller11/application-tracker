@@ -12,6 +12,7 @@ import OfferButton from '../components/OfferButton'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { Link } from 'react-router-dom'
 
 const Index = props => {
   return (
@@ -37,15 +38,10 @@ const Index = props => {
       ) : null}
       <Container className="mt-3 small">
         <Row>
-          <Col sm={4} className="text-center">
-            Title (Company)
-          </Col>
-          <Col sm={4} className="text-center">
-            Added
-          </Col>
-          <Col sm={4} className="text-center">
-            Actions
-          </Col>
+          <Col sm={3}>Title (Company)</Col>
+          <Col sm={3}>Added</Col>
+          <Col sm={3}>Notes</Col>
+          <Col sm={3}>Actions</Col>
         </Row>
       </Container>
 
@@ -61,7 +57,12 @@ const Index = props => {
                       {item.title} ({item.company})
                     </a>
                   </Col>
-                  <Col sm>Created: {date.toDateString()}</Col>
+                  <Col sm>{date.toDateString()}</Col>
+                  <Col sm>
+                    <Button variant="link">
+                      <Link to={`/view/${item.id}`}>Notes</Link>
+                    </Button>
+                  </Col>
                   <Col sm>
                     <ButtonGroup size="sm">
                       <AppliedButton

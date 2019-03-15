@@ -1,9 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Card from 'react-bootstrap/Card'
 
-class View extends Component {
-  render() {
-    return <div>View</div>
-  }
+const View = props => {
+  console.log(props.match.params.id)
+  let job = props.items.find(item => {
+    return item.id == props.match.params.id
+  })
+  if (!job) return <div>No job found. Please try again.</div>
+  return (
+    <Card>
+      <Card.Body>
+        <Card.Title className="text-info">{job.title}</Card.Title>
+        <Card.Subtitle className="text-secondary">{job.company}</Card.Subtitle>
+        <Card.Text className="text-dark">
+          Notes: <br />
+          {job.notes}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  )
 }
 
 export default View

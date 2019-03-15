@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import New from './views/New'
 import Index from './views/Index'
+import View from './views/View'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { IndexLinkContainer } from 'react-router-bootstrap'
@@ -31,10 +32,12 @@ class App extends Component {
   addItem(data) {
     let items = this.state.items
     data.created = Date.now()
+    data.id = data.created.toString()
     data.applied = false
     data.interviewing = false
     data.rejected = false
     data.offer = false
+    if (!data.notes) data.notes = ''
     items.push(data)
     this.setState({
       items: items
@@ -138,6 +141,10 @@ class App extends Component {
             <Route
               path="/new"
               render={props => <New addItem={this.addItem} {...props} />}
+            />
+            <Route
+              path="/view/:id"
+              render={props => <View items={this.state.items} {...props} />}
             />
             <Route
               path="/"
