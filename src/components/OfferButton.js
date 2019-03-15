@@ -1,16 +1,16 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 
-const RejectedButton = props => {
+const OfferButton = props => {
   return (
     <Button
-      variant={props.rejected ? 'dark' : 'outline-dark'}
+      variant={props.offer ? 'success' : 'outline-success'}
       id={props.id}
       onClick={props.handleClick}
     >
-      {props.rejected ? 'Rejected' : 'Rejection?'}
+      {props.offer ? 'Offer' : 'Offer?'}
     </Button>
   )
 }
 
-export default RejectedButton
+export default OfferButton

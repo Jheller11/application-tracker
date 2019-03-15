@@ -20,14 +20,18 @@ class App extends Component {
     this.saveChanges = this.saveChanges.bind(this)
     this.loadItems = this.loadItems.bind(this)
     this.changeAppliedStatus = this.changeAppliedStatus.bind(this)
+    this.changeInterviewStatus = this.changeInterviewStatus.bind(this)
+    this.changeRejectionStatus = this.changeRejectionStatus.bind(this)
+    this.changeOfferStatus = this.changeOfferStatus.bind(this)
   }
 
   addItem(data) {
     let items = this.state.items
     data.created = Date.now()
     data.applied = false
-    data.interview = false
+    data.interviewing = false
     data.rejected = false
+    data.offer = false
     items.push(data)
     this.setState({
       items: items
@@ -51,7 +55,7 @@ class App extends Component {
 
   // pull data from local storage and insert into state
   loadItems(e) {
-    e.preventDefault()
+    if (e) e.preventDefault()
     let string = localStorage.getItem('jobs')
     this.setState({
       items: JSON.parse(string)
@@ -69,8 +73,38 @@ class App extends Component {
   }
 
   // add method for change interview status
+  changeInterviewStatus(e) {
+    let key = parseInt(e.target.id)
+    let items = this.state.items
+    items[key].interviewing = !items[key].interviewing
+    this.setState({
+      items: items
+    })
+  }
 
   // add method for change rejected status
+  changeRejectionStatus(e) {
+    let key = parseInt(e.target.id)
+    let items = this.state.items
+    items[key].rejected = !items[key].rejected
+    this.setState({
+      items: items
+    })
+  }
+
+  // add method for change offer status
+  changeOfferStatus(e) {
+    let key = parseInt(e.target.id)
+    let items = this.state.items
+    items[key].offer = !items[key].offer
+    this.setState({
+      items: items
+    })
+  }
+
+  componentDidMount() {
+    this.loadItems()
+  }
 
   render() {
     return (
@@ -101,6 +135,9 @@ class App extends Component {
                   loadItems={this.loadItems}
                   deleteItem={this.deleteItem}
                   changeAppliedStatus={this.changeAppliedStatus}
+                  changeInterviewStatus={this.changeInterviewStatus}
+                  changeRejectionStatus={this.changeRejectionStatus}
+                  changeOfferStatus={this.changeOfferStatus}
                   {...props}
                 />
               )}
