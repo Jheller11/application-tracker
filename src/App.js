@@ -5,6 +5,7 @@ import Index from './views/Index'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { IndexLinkContainer } from 'react-router-bootstrap'
+import StorageBar from './components/StorageBar'
 import './App.css'
 
 class App extends Component {
@@ -12,7 +13,8 @@ class App extends Component {
     super()
     this.state = {
       items: [],
-      unsavedChanges: false
+      unsavedChanges: false,
+      lsSize: 0
     }
 
     this.addItem = this.addItem.bind(this)
@@ -23,6 +25,7 @@ class App extends Component {
     this.changeInterviewStatus = this.changeInterviewStatus.bind(this)
     this.changeRejectionStatus = this.changeRejectionStatus.bind(this)
     this.changeOfferStatus = this.changeOfferStatus.bind(this)
+    this.calculateStorage = this.calculateStorage.bind(this)
   }
 
   addItem(data) {
@@ -102,8 +105,17 @@ class App extends Component {
     })
   }
 
+  calculateStorage() {
+    let length = localStorage.getItem('jobs').length * 2
+    let size = (length / 1024 / 1000).toFixed(2)
+    this.setState({
+      lsSize: size
+    })
+  }
+
   componentDidMount() {
     this.loadItems()
+    this.calculateStorage()
   }
 
   render() {
@@ -120,7 +132,8 @@ class App extends Component {
             </IndexLinkContainer>
           </Nav>
         </Navbar>
-        <main>
+        <StorageBar size={this.state.lsSize} />
+        <main className="mt-3">
           <Switch>
             <Route
               path="/new"

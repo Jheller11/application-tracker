@@ -35,10 +35,10 @@ const Index = props => {
           previously saved items.
         </Alert>
       ) : null}
-      <Container>
+      <Container className="mt-3 small">
         <Row>
           <Col sm={4} className="text-center">
-            Title: Company
+            Title (Company)
           </Col>
           <Col sm={4} className="text-center">
             Added
@@ -58,7 +58,7 @@ const Index = props => {
                 <Row>
                   <Col sm>
                     <a className="text-center" href={item.url}>
-                      {item.title}: {item.company}
+                      {item.title} ({item.company})
                     </a>
                   </Col>
                   <Col sm>Created: {date.toDateString()}</Col>
