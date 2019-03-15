@@ -63,6 +63,7 @@ class App extends Component {
   loadItems(e) {
     if (e) e.preventDefault()
     let string = localStorage.getItem('jobs')
+    if (!string) return null
     this.setState({
       items: JSON.parse(string)
     })
@@ -109,6 +110,7 @@ class App extends Component {
   }
 
   calculateStorage() {
+    if (!localStorage.getItem('jobs')) return 0
     let length = localStorage.getItem('jobs').length * 2
     let size = (length / 1024 / 1000).toFixed(2)
     this.setState({
@@ -125,7 +127,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar>
-          <Navbar.Brand href="/">Tracker</Navbar.Brand>
+          <Navbar.Brand href="/application-tracker">Tracker</Navbar.Brand>
           <Nav>
             <IndexLinkContainer to="/">
               <Nav.Link>All</Nav.Link>

@@ -15,6 +15,7 @@ import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 
 const Index = props => {
+  console.log(props)
   return (
     <div>
       <Nav className="justify-content-center">

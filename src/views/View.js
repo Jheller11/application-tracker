@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card'
 const View = props => {
   console.log(props.match.params.id)
   let job = props.items.find(item => {
-    return item.id == props.match.params.id
+    return item.id === props.match.params.id
   })
   if (!job) return <div>No job found. Please try again.</div>
   return (
