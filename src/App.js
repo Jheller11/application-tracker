@@ -127,6 +127,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar>
+          {/* brand href hack because of gh pages */}
           <Navbar.Brand href="/application-tracker">Tracker</Navbar.Brand>
           <Nav>
             <IndexLinkContainer to="/">
