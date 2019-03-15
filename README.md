@@ -19,3 +19,12 @@ Instead of setting up a db and server, this app relies on local storage to save 
 ## Resources
 
 See resources.md in root.
+
+## To do
+
+1. Add testing
+2. Accessibility
+3. PWA Optimization.
+4. Favicon
+5. Comment/Refactor
+6. Customize bootstrap generic elements?
