@@ -22,9 +22,5 @@ See resources.md in root.
 
 ## To do
 
-1. Add testing
-2. Accessibility
-3. PWA Optimization.
-4. Favicon
-5. Comment/Refactor
-6. Customize bootstrap generic elements?
+1. PWA Optimization.
+2. Comment/Refactor

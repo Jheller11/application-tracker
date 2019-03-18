@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 class New extends Component {
   constructor(props) {
@@ -26,7 +27,10 @@ class New extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form
+        style={{ width: '50%', margin: '0 auto' }}
+        onSubmit={this.handleSubmit}
+      >
         <Form.Group>
           <Form.Label htmlFor="title">Title:</Form.Label>
           <Form.Control
@@ -65,12 +69,14 @@ class New extends Component {
             placeholder="free text"
           />
         </Form.Group>
-        <Button variant="outline-primary" type="submit">
-          Create
-        </Button>
-        <Button variant="outline-warning" type="reset">
-          Clear
-        </Button>
+        <ButtonGroup>
+          <Button variant="primary" size="sm" type="submit">
+            Create
+          </Button>
+          <Button variant="warning" size="sm" type="reset">
+            Clear
+          </Button>
+        </ButtonGroup>
       </Form>
     )
   }
