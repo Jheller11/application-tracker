@@ -21,12 +21,7 @@ class New extends Component {
   handleSubmit(e) {
     e.preventDefault()
     this.props.addItem(this.state)
-    e.target.reset()
-    this.setState({
-      title: '',
-      url: '',
-      company: ''
-    })
+    this.props.history.push('/')
   }
 
   render() {

@@ -42,6 +42,7 @@ class App extends Component {
     this.setState({
       items: items
     })
+    this.saveChanges()
   }
 
   // delete a single item by index (add an actual id?)
@@ -55,7 +56,7 @@ class App extends Component {
 
   // put state into local storage - replace if exists
   saveChanges(e) {
-    e.preventDefault()
+    if (e) e.preventDefault()
     localStorage.setItem('jobs', JSON.stringify(this.state.items))
   }
 
