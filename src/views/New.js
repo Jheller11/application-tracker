@@ -14,7 +14,7 @@ class New extends Component {
   handleChange(e) {
     e.preventDefault()
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.id]: e.target.value
     })
   }
 
@@ -28,37 +28,37 @@ class New extends Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Group>
-          <Form.Label>Title:</Form.Label>
+          <Form.Label htmlFor="title">Title:</Form.Label>
           <Form.Control
             onChange={this.handleChange}
-            name="title"
+            id="title"
             type="text"
             placeholder="Enter title"
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label>URL:</Form.Label>
+          <Form.Label htmlFor="url">URL:</Form.Label>
           <Form.Control
             onChange={this.handleChange}
-            name="url"
+            id="url"
             type="text"
             placeholder="Enter url"
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Company:</Form.Label>
+          <Form.Label htmlFor="company">Company:</Form.Label>
           <Form.Control
             onChange={this.handleChange}
-            name="company"
+            id="company"
             type="text"
             placeholder="Enter company"
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Notes:</Form.Label>
+          <Form.Label htmlFor="notes">Notes:</Form.Label>
           <Form.Control
             onChange={this.handleChange}
-            name="notes"
+            id="notes"
             type="text"
             as="textarea"
             rows="3"
